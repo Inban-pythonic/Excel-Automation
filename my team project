@@ -1,0 +1,49 @@
+import os
+import xlwt
+import xlrd
+import pandas
+import openpyxl
+import pyexcel as pe
+from openpyxl import Workbook
+from openpyxl.chart import BarChart, Series, Reference
+from openpyxl.chart import (
+    Reference,
+    Series,
+    BarChart3D,
+)
+print(os.getcwd()) ### used to get the current working directory
+print("This is for working with Excel files")
+book = xlrd.open_workbook('C:/Users/lenova/PycharmProjects/Practice/project list1.xlsx')
+print("The number of sheets in the loaded file is", book.nsheets)
+# print sheet names
+print("The Sheets in the loaded workbooks are",book.sheet_names())
+sheetname = str(input("Please give the sheet name to be active to work :"))
+sheet = book.sheet_by_name(sheetname)
+data = [] #make a data store
+for i in range(sheet.nrows):
+ data.append(sheet.row_values(i)) #drop all the values in the rows into data
+print(data)
+
+####Adding rows in the sheet table 1########
+print(os.getcwd()) ### used to get the current working directory
+sheet = pe.get_sheet(file_name="project list1.xlsx")
+x=int(input("Enter the SR.NO : "))
+y=int(input("Enter the Reg no :"))
+z=str(input("Enter the Student name:"))
+a =str(input("Enter the Project Title :"))
+b = str(input("Enter the Supervisor name :"))
+c = input("Enter the date :")
+sheet.row += [x, y, z, a, b, c]
+sheet.save_as("project list_Updated.xlsx")
+pe.get_sheet(file_name="project list.xlsx")
+
+
+####Adding Columns in the sheet table#####
+
+r=str(input("Enter the column name :"))
+s=str(input("Enter the data 1 to be added :"))
+t=str(input("Enter the data 2 to be added :"))
+u=str(input("Enter the data 3 to be added :"))
+sheet.column += [r, s, t, u]
+sheet.save_as("project list_Updated.xlsx")
+pe.get_sheet(file_name="project list1.xlsx")
