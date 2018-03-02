@@ -1,0 +1,5 @@
+import openpyxl
+
+wb = openpyxl.load_workbook('DataAnalysis.xlsx')  #working doc. needs to be in the current working dir. check os.getcwd()
+type(wb)                                          # or change cwd to os.chdir() call to be change
+
